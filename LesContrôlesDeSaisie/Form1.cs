@@ -26,10 +26,8 @@ namespace LesContrôlesDeSaisie
 
         private void Btn_Valider_Click(object sender, EventArgs e)
         {
-
             MessageBoxButtons btn = MessageBoxButtons.OK;
             MessageBox.Show("Nom : " + textBoxNom.Text + "\nDate : " + textBoxDate.Text + "\nMontant : " + textBoxMt.Text + "\nCode : " + textBoxCP.Text, "Validation effectuée", btn);
-
         }
 
         private void Btn_Effacer_Click(object sender, EventArgs e)
@@ -56,6 +54,7 @@ namespace LesContrôlesDeSaisie
             else
             {
                 greenTestName = true;
+                errorProvider1.Clear();
                 textBoxNom.BackColor = Color.GreenYellow;
                 
             }
@@ -92,14 +91,8 @@ namespace LesContrôlesDeSaisie
 
             MessageBoxButtons btn2 = MessageBoxButtons.YesNo;
             DialogResult result = MessageBox.Show("Fin de l'application", "FIN", btn2, MessageBoxIcon.Question);
-            if (result == DialogResult.Yes)
-            {
-                e.Cancel = false;
-            }
-            else
-            {
+            if (result == DialogResult.No)
                 e.Cancel = true;
-            }
         }
 
         private void textBoxMt_TextChanged(object sender, EventArgs e)
@@ -118,7 +111,6 @@ namespace LesContrôlesDeSaisie
                 greenTestMt = true;
                 errorProvider3.Clear();
                 textBoxMt.BackColor = Color.GreenYellow;
-
             }
             Verif();
         }
@@ -150,11 +142,7 @@ namespace LesContrôlesDeSaisie
                 && greenTestMt
                 && greenTestCp
                 )
-            {
-                Btn_Valider.Enabled = true;
-            }
-            else
-                Btn_Valider.Enabled = false;
+                 Btn_Valider.Enabled = true;
         }
     }
 }
